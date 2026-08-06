@@ -1,95 +1,343 @@
-<p align="center"><img src="buildroot/share/pixmaps/logo/marlin-outrun-nf-500.png" height="250" alt="MarlinFirmware's logo" /></p>
+# 🖨️ Low-Cost 3D Printer with AI-Based Real-Time Fault Detection
 
-<h1 align="center">Marlin 3D Printer Firmware</h1>
+A fully functional, high-accuracy 3D printer built completely from scratch for **under ₹5,000** using primarily second-hand components. This project combines embedded systems, electronics, firmware development, mechanical assembly, and artificial intelligence by integrating a fine-tuned **YOLOv8** model for real-time 3D print fault detection.
 
-<p align="center">
-    <a href="/LICENSE"><img alt="GPL-V3.0 License" src="https://img.shields.io/github/license/marlinfirmware/marlin.svg"></a>
-    <a href="https://github.com/MarlinFirmware/Marlin/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/marlinfirmware/marlin.svg"></a>
-    <a href="https://github.com/MarlinFirmware/Marlin/releases"><img alt="Last Release Date" src="https://img.shields.io/github/release-date/MarlinFirmware/Marlin"></a>
-    <a href="https://github.com/MarlinFirmware/Marlin/actions"><img alt="CI Status" src="https://github.com/MarlinFirmware/Marlin/actions/workflows/test-builds.yml/badge.svg"></a>
-    <a href="https://github.com/sponsors/thinkyhead"><img alt="GitHub Sponsors" src="https://img.shields.io/github/sponsors/thinkyhead?color=db61a2"></a>
-    <br />
-    <a href="https://twitter.com/MarlinFirmware"><img alt="Follow MarlinFirmware on Twitter" src="https://img.shields.io/twitter/follow/MarlinFirmware?style=social&logo=twitter"></a>
-</p>
+---
 
-Additional documentation can be found at the [Marlin Home Page](https://marlinfw.org/).
-Please test this firmware and let us know if it misbehaves in any way. Volunteers are standing by!
+# 📖 Overview
 
-## Marlin 2.0
+This project was developed to demonstrate that a reliable and accurate 3D printer can be built at a very low cost without relying on expensive commercial kits. By carefully sourcing second-hand components and configuring them with open-source firmware, the printer delivers excellent print quality while maintaining a budget of less than ₹5,000.
 
-Marlin 2.0 takes this popular RepRap firmware to the next level by adding support for much faster 32-bit and ARM-based boards while improving support for 8-bit AVR boards. Read about Marlin's decision to use a "Hardware Abstraction Layer" below.
+To further improve the printing process, an AI-based monitoring system was developed using a fine-tuned YOLOv8 model capable of detecting print defects in real time. This helps reduce failed prints, save material, and improve overall print reliability.
 
-Download earlier versions of Marlin on the [Releases page](https://github.com/MarlinFirmware/Marlin/releases).
+---
 
-## Example Configurations
+# 🎯 Objectives
 
-Before building Marlin you'll need to configure it for your specific hardware. Your vendor should have already provided source code with configurations for the installed firmware, but if you ever decide to upgrade you'll need updated configuration files. Marlin users have contributed dozens of tested example configurations to get you started. Visit the [MarlinFirmware/Configurations](https://github.com/MarlinFirmware/Configurations) repository to find the right configuration for your hardware.
+- Build a low-cost 3D printer from scratch.
+- Achieve excellent printing accuracy.
+- Minimize the overall project cost by using second-hand components.
+- Configure and optimize Marlin Firmware.
+- Integrate an AI-based print monitoring system.
+- Detect print faults during printing using YOLOv8.
+- Gain practical experience in embedded systems, hardware integration, and computer vision.
 
-## Building Marlin 2.0
+---
 
-To build Marlin 2.0 you'll need [Arduino IDE 1.8.8 or newer](https://www.arduino.cc/en/main/software) or [PlatformIO](http://docs.platformio.org/en/latest/ide.html#platformio-ide). Detailed build and install instructions are posted at:
+# ✨ Features
 
-  - [Installing Marlin (Arduino)](http://marlinfw.org/docs/basics/install_arduino.html)
-  - [Installing Marlin (VSCode)](http://marlinfw.org/docs/basics/install_platformio_vscode.html).
+- Fully functional DIY 3D printer
+- Total build cost under ₹5,000
+- High printing accuracy
+- Built primarily using second-hand components
+- Arduino Mega + RAMPS 1.4 based control system
+- Marlin Firmware
+- BLTouch Automatic Bed Leveling
+- LCD interface for printer control
+- UltiMaker Cura slicing support
+- Real-time AI-based print fault detection using YOLOv8
+- Modular and upgrade-friendly design
 
-### Supported Platforms
+---
 
-  Platform|MCU|Example Boards
-  --------|---|-------
-  [Arduino AVR](https://www.arduino.cc/)|ATmega|RAMPS, Melzi, RAMBo
-  [Teensy++ 2.0](https://www.microchip.com/en-us/product/AT90USB1286)|AT90USB1286|Printrboard
-  [Arduino Due](https://www.arduino.cc/en/Guide/ArduinoDue)|SAM3X8E|RAMPS-FD, RADDS, RAMPS4DUE
-  [ESP32](https://github.com/espressif/arduino-esp32)|ESP32|FYSETC E4, E4d@BOX, MRR
-  [LPC1768](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc1700-cortex-m3/512-kb-flash-64-kb-sram-ethernet-usb-lqfp100-package:LPC1768FBD100)|ARM® Cortex-M3|MKS SBASE, Re-ARM, Selena Compact
-  [LPC1769](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc1700-cortex-m3/512-kb-flash-64-kb-sram-ethernet-usb-lqfp100-package:LPC1769FBD100)|ARM® Cortex-M3|Smoothieboard, Azteeg X5 mini, TH3D EZBoard
-  [STM32F103](https://www.st.com/en/microcontrollers-microprocessors/stm32f103.html)|ARM® Cortex-M3|Malyan M200, GTM32 Pro, MKS Robin, BTT SKR Mini
-  [STM32F401](https://www.st.com/en/microcontrollers-microprocessors/stm32f401.html)|ARM® Cortex-M4|ARMED, Rumba32, SKR Pro, Lerdge, FYSETC S6, Artillery Ruby
-  [STM32F7x6](https://www.st.com/en/microcontrollers-microprocessors/stm32f7x6.html)|ARM® Cortex-M7|The Borg, RemRam V1
-  [SAMD51P20A](https://www.adafruit.com/product/4064)|ARM® Cortex-M4|Adafruit Grand Central M4
-  [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)|ARM® Cortex-M4|
-  [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)|ARM® Cortex-M4|
-  [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)|ARM® Cortex-M7|
-  [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)|ARM® Cortex-M7|
-  Linux Native|x86/ARM/etc.|Raspberry Pi
+# 🛠 Hardware Components
 
-## Submitting Changes
+| Component | Purpose |
+|-----------|---------|
+| Arduino Mega 2560 | Main microcontroller controlling the printer |
+| RAMPS 1.4 | Motor driver and printer control board |
+| 12V Power Supply | Powers the complete printer |
+| Stepper Motors | Control X, Y, and Z axis movement |
+| Extruder Stepper Motor | Controls filament extrusion |
+| Nozzle & Hotend | Melts and extrudes filament |
+| Heated Bed *(Optional if used)* | Improves print adhesion |
+| BLTouch Sensor | Automatic bed leveling |
+| LCD Display | Monitor and control printer operations |
+| End Stops | Axis homing and positioning |
+| GT2 Belts & Pulleys | X and Y motion transmission |
+| Lead Screw | Z-axis movement |
+| Cooling Fans | Hotend and print cooling |
+| Mechanical Frame | Structural support |
 
-- Submit **Bug Fixes** as Pull Requests to the ([bugfix-2.0.x](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x)) branch.
-- Follow the [Coding Standards](http://marlinfw.org/docs/development/coding_standards.html) to gain points with the maintainers.
-- Please submit your questions and concerns to the [Issue Queue](https://github.com/MarlinFirmware/Marlin/issues).
+---
 
-## Marlin Support
+# 💻 Software Stack
 
-The Issue Queue is reserved for Bug Reports and Feature Requests. To get help with configuration and troubleshooting, please use the following resources:
+## Firmware
 
-- [Marlin Documentation](https://marlinfw.org) - Official Marlin documentation
-- [Marlin Discord](https://discord.gg/n5NJ59y) - Discuss issues with Marlin users and developers
-- Facebook Group ["Marlin Firmware"](https://www.facebook.com/groups/1049718498464482/)
-- RepRap.org [Marlin Forum](https://forums.reprap.org/list.php?415)
-- Facebook Group ["Marlin Firmware for 3D Printers"](https://www.facebook.com/groups/3Dtechtalk/)
-- [Marlin Configuration](https://www.youtube.com/results?search_query=marlin+configuration) on YouTube
+- Marlin Firmware
 
-## Contributors
+Responsible for:
 
-Marlin is constantly improving thanks to a huge number of contributors from all over the world bringing their specialties and talents. Huge thanks are due to [all the contributors](https://github.com/MarlinFirmware/Marlin/graphs/contributors) who regularly patch up bugs, help direct traffic, and basically keep Marlin from falling apart. Marlin's continued existence would not be possible without them.
+- Motion control
+- Temperature control
+- Motor control
+- Endstop handling
+- Auto bed leveling
+- LCD interface
+- G-code execution
 
-## Administration
+---
 
-Regular users can open and close their own issues, but only the administrators can do project-related things like add labels, merge changes, set milestones, and kick trolls. The current Marlin admin team consists of:
+## Slicer
 
- - Scott Lahteine [[@thinkyhead](https://github.com/thinkyhead)] - USA - Project Maintainer &nbsp; [💸 Donate](https://www.thinkyhead.com/donate-to-marlin)
- - Roxanne Neufeld [[@Roxy-3D](https://github.com/Roxy-3D)] - USA
- - Keith Bennett [[@thisiskeithb](https://github.com/thisiskeithb)] - USA &nbsp; [💸 Donate](https://github.com/sponsors/thisiskeithb)
- - Peter Ellens [[@ellensp](https://github.com/ellensp)] - New Zealand  &nbsp; [💸 Donate](https://ko-fi.com/ellensp)
- - Victor Oliveira [[@rhapsodyv](https://github.com/rhapsodyv)] - Brazil
- - Chris Pepper [[@p3p](https://github.com/p3p)] - UK
- - Jason Smith [[@sjasonsmith](https://github.com/sjasonsmith)] - USA
- - Luu Lac [[@shitcreek](https://github.com/shitcreek)] - USA
- - Bob Kuhn [[@Bob-the-Kuhn](https://github.com/Bob-the-Kuhn)] - USA
- - Erik van der Zalm [[@ErikZalm](https://github.com/ErikZalm)] - Netherlands &nbsp; [💸 Donate](https://flattr.com/submit/auto?user_id=ErikZalm&url=https://github.com/MarlinFirmware/Marlin&title=Marlin&language=&tags=github&category=software)
+UltiMaker Cura
 
-## License
+Used for:
 
-Marlin is published under the [GPL license](/LICENSE) because we believe in open development. The GPL comes with both rights and obligations. Whether you use Marlin firmware as the driver for your open or closed-source product, you must keep Marlin open, and you must provide your compatible Marlin source code to end users upon request. The most straightforward way to comply with the Marlin license is to make a fork of Marlin on Github, perform your modifications, and direct users to your modified fork.
+- Slicing STL models
+- Generating G-code
+- Print configuration
+- Layer visualization
 
-While we can't prevent the use of this code in products (3D printers, CNC, etc.) that are closed source or crippled by a patent, we would prefer that you choose another firmware or, better yet, make your own.
+---
+
+## Programming
+
+- Arduino IDE
+- C/C++
+- Python
+
+---
+
+## AI Framework
+
+- YOLOv8
+- Ultralytics
+- OpenCV
+
+---
+
+# ⚙ Working Principle
+
+1. Design or download a 3D model.
+2. Slice the model using UltiMaker Cura.
+3. Generate G-code.
+4. Upload the G-code to the printer.
+5. Marlin Firmware interprets each command.
+6. Arduino Mega controls the motors through RAMPS 1.4.
+7. Stepper motors move the print head along X, Y, and Z axes.
+8. The extruder melts and deposits filament layer by layer.
+9. BLTouch automatically levels the print bed.
+10. During printing, the YOLOv8 model continuously monitors the print and detects defects in real time.
+
+---
+
+# 🤖 AI-Based Print Fault Detection
+
+To enhance printer reliability, a custom YOLOv8 model was fine-tuned to detect common 3D printing failures in real time.
+
+## Objectives
+
+- Detect printing defects early
+- Reduce failed prints
+- Save filament
+- Improve print quality
+- Enable intelligent monitoring
+
+---
+
+## Faults Detected
+
+- Layer Cracking
+- Over Extrusion
+- Stringing
+- Warping
+
+---
+
+## AI Workflow
+
+Dataset Collection
+
+↓
+
+Data Annotation
+
+↓
+
+YOLOv8 Training
+
+↓
+
+Model Fine-Tuning
+
+↓
+
+Real-Time Camera Input
+
+↓
+
+Defect Detection
+
+↓
+
+Bounding Box Prediction
+
+↓
+
+Fault Classification
+
+↓
+
+Monitoring Output
+
+---
+
+# 📂 Project Structure
+
+```
+3d-printer-with-ai-fault-detection/
+
+│── Firmware/
+│ └── Marlin/
+
+│── YOLOv8/
+│ ├── Dataset/
+│ ├── Training/
+│ ├── Models/
+│ ├── Detection/
+│ └── Weights/
+
+│── Hardware/
+│ ├── Wiring/
+│ ├── Components/
+│ └── BOM/
+
+│── Cura_Profile/
+
+│── Documentation/
+
+│── README.md
+
+│── LICENSE
+```
+
+---
+
+# 🚀 Getting Started
+
+## Hardware Setup
+
+- Assemble the mechanical frame.
+- Install stepper motors.
+- Mount belts and lead screws.
+- Install extruder assembly.
+- Connect Arduino Mega.
+- Install RAMPS 1.4.
+- Connect stepper motors.
+- Install end stops.
+- Connect BLTouch.
+- Connect LCD display.
+- Connect power supply.
+- Upload Marlin Firmware.
+- Perform printer calibration.
+
+---
+
+## Software Installation
+
+Install Python packages
+
+```bash
+pip install ultralytics
+pip install opencv-python
+pip install numpy
+```
+
+Clone Repository
+
+```bash
+git clone https://github.com/yourusername/3d-printer-with-ai-fault-detection.git
+
+cd 3d-printer-with-ai-fault-detection
+```
+
+---
+
+# 📊 Results
+
+- Successfully built a fully functional 3D printer.
+- Achieved excellent print accuracy.
+- Total hardware cost maintained below ₹5,000.
+- Successfully configured Marlin Firmware.
+- Successfully integrated BLTouch automatic bed leveling.
+- Successfully fine-tuned YOLOv8 for print fault detection.
+- Real-time monitoring improves print reliability and reduces material waste.
+
+---
+
+# 🎓 Skills Gained
+
+- Embedded Systems
+- Electronics Hardware Design
+- Arduino Programming
+- Marlin Firmware Configuration
+- Motion Control Systems
+- Stepper Motor Control
+- Mechanical Assembly
+- 3D Printing Technology
+- Computer Vision
+- Deep Learning
+- YOLOv8
+- OpenCV
+- Python Programming
+- System Integration
+- Hardware Troubleshooting
+
+---
+
+# 🔮 Future Improvements
+
+- Wireless printer control
+- OctoPrint integration
+- ESP32-based remote monitoring
+- Automatic print pause when defects are detected
+- Mobile application support
+- Multi-camera monitoring
+- Cloud-based print analytics
+- Predictive maintenance using AI
+
+---
+
+# 🤝 Contributing
+
+Contributions are always welcome.
+
+If you would like to improve this project:
+
+1. Fork the repository.
+2. Create a new feature branch.
+3. Commit your changes.
+4. Push the branch.
+5. Open a Pull Request.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Yashwanth P**
+
+Electronics and Communication Engineering
+
+Interests
+
+- Embedded Systems
+- Hardware Design
+- Firmware Development
+- Computer Vision
+- Artificial Intelligence
+- 3D Printing
+- Robotics
+
+---
+
+## ⭐ Support
+
+If you found this project useful or interesting, consider giving it a **⭐ Star** on GitHub. It helps others discover the project and motivates further development.
