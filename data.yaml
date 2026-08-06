@@ -1,0 +1,16 @@
+names:
+  0: spaghetti
+  1: stringing
+  2: warping
+  3: over_extrusion
+  4: under_extrusion
+  5: cracks
+  6: blobs
+  7: zits
+  8: printer_gantry
+  9: fail
+nc: 10
+path: 3d_printing_combined
+test: test/images
+train: train/images
+val: valid/images
