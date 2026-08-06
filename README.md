@@ -1,3 +1,7 @@
+# 3D Printer with AI-Based Real-Time Fault Detection
+
+An open-source project showcasing the design and development of a **low-cost, high-accuracy 3D printer** built from scratch for under **₹5,000** using Arduino Mega, RAMPS 1.4, Marlin Firmware, and second-hand components. The printer is integrated with a fine-tuned **YOLOv8** computer vision model that performs **real-time print fault detection**, helping improve print reliability, reduce material waste, and demonstrate the integration of embedded systems, firmware, and artificial intelligence.
+
 # 🖨️ Low-Cost 3D Printer with AI-Based Real-Time Fault Detection
 
 A fully functional, high-accuracy 3D printer built completely from scratch for **under ₹5,000** using primarily second-hand components. This project combines embedded systems, electronics, firmware development, mechanical assembly, and artificial intelligence by integrating a fine-tuned **YOLOv8** model for real-time 3D print fault detection.
